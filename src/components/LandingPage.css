@@ -1,0 +1,65 @@
+.landing-page {
+    text-align: center;
+    color: #333;
+    font-family: Arial, sans-serif;
+  }
+  
+  .landing-header {
+    background-color: #4CAF50;
+    color: white;
+    padding: 50px 20px;
+  }
+  
+  .landing-header h1 {
+    margin: 0;
+    font-size: 3rem;
+  }
+  
+  .landing-header p {
+    font-size: 1.5rem;
+  }
+  
+  .cta-buttons {
+    margin-top: 20px;
+  }
+  
+  .cta-buttons .btn-primary,
+  .cta-buttons .btn-secondary {
+    text-decoration: none;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    margin: 10px;
+    display: inline-block;
+  }
+  
+  .cta-buttons .btn-primary {
+    background-color: #2196F3;
+  }
+  
+  .cta-buttons .btn-secondary {
+    background-color: #f44336;
+  }
+  
+  .features {
+    padding: 40px 20px;
+    background-color: #f4f4f4;
+  }
+  
+  .feature {
+    margin: 20px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+  }
+  
+  .feature h2 {
+    margin-top: 0;
+  }
+  
+  .landing-footer {
+    padding: 20px;
+    background-color: #333;
+    color: white;
+  }
+  
