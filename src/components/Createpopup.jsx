@@ -4,10 +4,10 @@ import 'reactjs-popup/dist/index.css';
 
 function Createpopup() {
   return (
-    <div>
-      <Popup>
-        
-      </Popup>
+    <div className=''>
+      {/* <Popup open={} onClose={}>
+
+      </Popup> */}
     </div>
   )
 }
