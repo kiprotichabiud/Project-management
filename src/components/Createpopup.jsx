@@ -5,9 +5,7 @@ import 'reactjs-popup/dist/index.css';
 function Createpopup() {
   return (
     <div className=''>
-      {/* <Popup open={} onClose={}>
-
-      </Popup> */}
+      
     </div>
   )
 }
