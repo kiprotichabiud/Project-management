@@ -16,7 +16,7 @@ function App() {
     <>
     <LandingPage />
     <Createpopup onClick={isOpen} onClose={closePopup} />
-    <button onClick={openPopup}>Click</button>
+    <button onClick={openPopup}>Cli</button>
 
       
     </>
