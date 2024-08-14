@@ -8,7 +8,7 @@ function Createpopup({isOpen, onClose}) {
       <img className='' src='https://i.pinimg.com/564x/87/3b/8e/873b8eec2f539668393e2c68cd0b2bc5.jpg' />
       
       
-      <Popup open={isOpen} onClose={onClose} modal>
+      <Popup open={isOpen} onClose={onClose} modal className='rounded-xl'>
             <div className="bg-gray-200 rounded-lg shadow-xl p-6" style={{ width: '600px' }}>
                 <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">New Project</h2>
                 <div>
