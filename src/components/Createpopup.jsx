@@ -10,6 +10,9 @@ function Createpopup({isOpen, onClose}) {
                 <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">Create popup</h2>
             </div>
         </Popup>
+    <div className='bg-slate-400'>
+      <h1></h1>
+    </div>
     </div>
   )
 }
