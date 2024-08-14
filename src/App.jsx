@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import './App.css'
-import LandingPage from './components/LandingPage'
+import React from 'react'
 import Createpopup from './components/Createpopup'
+import ProjectPage from './components/ProjectPage'
+import Logout from './components/Logout'
 
 function App() {
   const [isOpen, setIsOpen] = useState(false);
@@ -10,13 +10,11 @@ function App() {
   const closePopup = () => setIsOpen(false);
 
   return (
-    <>
-    <LandingPage />
-    <Createpopup isOpen={isOpen} onClose={closePopup} />
-    <button onClick={openPopup} className='bg-red-400'>Click</button>
-
-      
-    </>
+    <div>
+      <Createpopup />
+      <ProjectPage/>
+      <Logout/>
+    </div>
   )
 }
 
