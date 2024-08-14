@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.css'
+import React from 'react'
 import Createpopup from './components/Createpopup'
+import ProjectPage from './components/ProjectPage'
+import Logout from './components/Logout'
 
 
 function App() {
@@ -9,6 +9,8 @@ function App() {
   return (
     <div>
       <Createpopup />
+      <ProjectPage/>
+      <Logout/>
     </div>
   )
 }
