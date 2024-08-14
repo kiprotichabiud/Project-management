@@ -1,5 +1,6 @@
 import React from 'react'
 import Createpopup from './components/Createpopup'
+import LandingPage from './components/LandingPage'
 import ProjectPage from './components/ProjectPage'
 import Logout from './components/Logout'
 
@@ -10,11 +11,13 @@ function App() {
   const closePopup = () => setIsOpen(false);
 
   return (
-    <div>
-      <Createpopup />
-      <ProjectPage/>
-      <Logout/>
-    </div>
+    <>
+    <LandingPage />
+    <Createpopup isOpen={isOpen} onClose={closePopup} />
+    <button onClick={openPopup} className='bg-red-400'>Click</button>
+
+      
+    </>
   )
 }
 
