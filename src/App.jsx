@@ -1,11 +1,9 @@
-import { useState, useEffect } from 'react'
-import reactLogo from './assets/react.svg'
+import { useState } from 'react'
 import './App.css'
 import LandingPage from './components/LandingPage'
 import Createpopup from './components/Createpopup'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [isOpen, setIsOpen] = useState(false);
 
   const openPopup = () => setIsOpen(true);
@@ -14,8 +12,8 @@ function App() {
   return (
     <>
     <LandingPage />
-    <Createpopup onClick={isOpen} onClose={closePopup} />
-    <button onClick={openPopup}>Cli</button>
+    <Createpopup isOpen={isOpen} onClose={closePopup} />
+    <button onClick={openPopup} className='bg-red-400'>Click</button>
 
       
     </>
