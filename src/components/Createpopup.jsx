@@ -4,10 +4,8 @@ import 'reactjs-popup/dist/index.css';
 
 function Createpopup() {
   return (
-    <div className=''>
-      {/* <Popup open={} onClose={}>
-
-      </Popup> */}
+    <div className='bg-slate-400'>
+      <h1></h1>
     </div>
   )
 }
