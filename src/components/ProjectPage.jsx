@@ -56,7 +56,8 @@ const ProjectPage = () => {
               </div>
             ))
           ) : (
-            <p onClick={openPopup} className="text-gray-700 cursor-pointer text-xl py-28">
+            
+            <p onClick={openPopup} className="text-gray-700  cursor-pointer text-xl py-28">
               + Click here to create a new project
             </p>
           )}
