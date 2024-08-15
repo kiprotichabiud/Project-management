@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import Createpopup from './Createpopup';
+import { useNavigate } from 'react-router-dom'; 
 
 const ProjectPage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [projects, setProjects] = useState([]); 
+  const navigate = useNavigate(); 
 
   const openPopup = () => setIsPopupOpen(true);
   const closePopup = () => setIsPopupOpen(false);
@@ -13,8 +15,16 @@ const ProjectPage = () => {
     closePopup();
   };
 
-  const deleteProject = (indexToRemove) => {
+  const deleteProject = async (indexToRemove) => {
     setProjects((prevProjects) => prevProjects.filter((_, index) => index !== indexToRemove));
+
+    const projectToDelete = projects[indexToRemove];
+    await fetch('/projects/' + projectToDelete.id, {
+      method: 'DELETE',
+    });
+  };
+
+  const handleLogout = () => {
   };
 
   return (
@@ -22,6 +32,7 @@ const ProjectPage = () => {
       <div className='flex justify-evenly mt-14 p-16'>
         <div className="text-lg font-semibold">User’s name</div>
         <button onClick={openPopup} className="border-2 px-4 py-2 rounded">Create Project</button>
+        <button onClick={handleLogout} className="border-2 px-4 py-2 rounded ">Logout</button> {/* Logout Button */}
       </div>
 
       <main className="text-center">
@@ -61,9 +72,7 @@ const ProjectPage = () => {
         onSubmit={handleProjectSubmit} 
       />
     </div>
-
   );
 }
-
 
 export default ProjectPage;

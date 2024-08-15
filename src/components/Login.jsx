@@ -19,7 +19,7 @@ function Login() {
     <div className="min-h-screen bg-cover bg-center flex items-center justify-center"
       style={{ backgroundImage: "url('https://images.unsplash.com/photo-1715331999602-fc92b7eb975e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHdhdnklMjBjb2xvdXJpbmd8ZW58MHx8MHx8fDA%3D')" }}>
       <div className="bg-white bg-opacity-20 p-8 rounded-lg shadow-lg max-w-md w-full">
-        <h1 className="text-3xl font-bold text-center mb-6">Login Form</h1>
+        <h1 className="text-3xl font-bold text-center mb-6 text-white">Login Form</h1>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <input type="text" name="username" placeholder="Username" required onChange={handleChange}
