@@ -46,7 +46,7 @@ To set up the project locally, follow these steps:
 2. **Navigate into the project directory:**
 
    ```bash
-   cd your-repo
+   cd project-management
    ```
 
 3. **Install dependencies:**
