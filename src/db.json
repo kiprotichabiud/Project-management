@@ -1,10 +1,14 @@
 {
   "users": [
-
+    {
+      "id": "e184",
+      "name": "candy",
+      "username": "admin",
+      "email": "candymzungu92@gmail.com",
+      "password": "Candy"
+    }
   ],
-  "project": [
-    
-  ],
+  "project": [],
   "testimonials": [
     {
       "name": "Abiud",

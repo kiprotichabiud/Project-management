@@ -18,8 +18,7 @@ function SignUp() {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (formData.password === formData.confirmPassword) {
-      // Handle signup logic here
-      navigate('/projects'); // Redirect to ProjectPage after successful signup
+      navigate('/projects'); 
     } else {
       alert("Passwords do not match!");
     }
