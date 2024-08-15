@@ -9,125 +9,66 @@ function Createpopup({ isOpen, onClose, onSubmit }) {
   const [members, setMembers] = useState([]);
   const [memberInput, setMemberInput] = useState('');
 
-  const addMember = () => {
+  const handleAddMember = () => {
     if (memberInput.trim() !== '') {
-      setMembers([...members, memberInput]);
-      setMemberInput(''); 
+      setMembers([...members, memberInput.trim()]);
+      setMemberInput('');
     }
   };
 
-  const removeMember = (index) => {
-    const newMembers = members.filter((_, i) => i !== index);
-    setMembers(newMembers);
-  };
-
-  const handleSubmit = async () => {
-    const projectData = {
-      name,
-      description,
-      project_url: projectUrl,
-      members,
-    };
-
-    try {
-      const response = await fetch('http://localhost:3000/project', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(projectData),
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name && description && projectUrl) {
+      onSubmit({
+        name,
+        description,
+        project_url: projectUrl,
+        members
       });
-
-      if (response.ok) {
-        console.log('Project created successfully!');
-        onSubmit(projectData);
-      } else {
-        console.error('Failed to create project.');
-      }
-    } catch (error) {
-      console.error('Error:', error);
+      onClose();
+    } else {
+      alert('Please fill in all fields');
     }
   };
 
   return (
-    <Popup open={isOpen} onClose={onClose} modal className="rounded-xl">
-      <div className="rounded-lg shadow-xl p-6">
-        <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">New Project</h2>
-
-        <div>
-          <label htmlFor="name" className="block text-black mb-2">NAME:</label>
+    <Popup open={isOpen} onClose={onClose}>
+      <div className="popup-content">
+        <h2>Create New Project</h2>
+        <form onSubmit={handleSubmit}>
           <input 
             type="text" 
-            placeholder="Name" 
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none" 
+            placeholder="Project Name" 
+            value={name} 
+            onChange={(e) => setName(e.target.value)} 
           />
-        </div>
-
-        <div>
-          <label htmlFor="description" className="block text-black mb-2">DESCRIPTION:</label>
+          <textarea 
+            placeholder="Project Description" 
+            value={description} 
+            onChange={(e) => setDescription(e.target.value)} 
+          />
           <input 
-            type="text" 
-            placeholder="Description" 
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none" 
+            type="url" 
+            placeholder="Project URL" 
+            value={projectUrl} 
+            onChange={(e) => setProjectUrl(e.target.value)} 
           />
-        </div>
-
-        <div>
-          <label htmlFor="project_url" className="block text-black mb-2">PROJECT_URL:</label>
-          <input 
-            type="text" 
-            placeholder="Project_url" 
-            value={projectUrl}
-            onChange={(e) => setProjectUrl(e.target.value)}
-            className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none" 
-          />
-        </div>
-
-        <div>
-          <label htmlFor="members" className="block text-black mb-2">MEMBERS:</label>
-          <div className="flex">
+          <div className="members-input">
             <input 
               type="text" 
-              placeholder="Add a member" 
-              value={memberInput}
-              onChange={(e) => setMemberInput(e.target.value)}
-              className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none" 
+              placeholder="Add Team Member" 
+              value={memberInput} 
+              onChange={(e) => setMemberInput(e.target.value)} 
             />
-            <button 
-              onClick={addMember} 
-              className="ml-2 bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300">
-              Add
-            </button>
+            <button type="button" onClick={handleAddMember}>Add</button>
           </div>
-        </div>
-
-        <div>
-          <ul className="mt-4">
+          <div className="members-list">
             {members.map((member, index) => (
-              <li key={index} className="flex justify-between items-center bg-gray-100 p-2 rounded-lg mb-2">
-                {member}
-                <button
-                  onClick={() => removeMember(index)}
-                  className="text-red-500 hover:text-red-700 font-bold"
-                >
-                  Remove
-                </button>
-              </li>
+              <span key={index} className="member-item">{member}</span>
             ))}
-          </ul>
-        </div>
-
-        <div className="flex justify-center mt-6">
-          <button 
-            onClick={handleSubmit} 
-            className="bg-blue-500 hover:bg-blue-600 min-w-40 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300">
-            Create Project
-          </button>
-        </div>
+          </div>
+          <button type="submit">Create Project</button>
+        </form>
       </div>
     </Popup>
   );

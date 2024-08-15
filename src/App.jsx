@@ -1,37 +1,25 @@
 
-import './App.css'
-import NavBar from './components/NavBar'
-import Login from './components/Login'
-import SignUp from './components/SignUp'
-
-
-import Createpopup from './components/Createpopup'
-
-import LandingPage from './components/LandingPage'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import LandingPage from './components/LandingPage';
+import SignUp from './components/SignUp';
+import Login from './components/Login';
+import ProjectPage from './components/ProjectPage';
 
 
 function App() {
-  
-
   return (
-    <>
 
-      
-        <div>
-          <NavBar/>
-          <Login/>
-          <SignUp/>
-        </div>
-        
+    <Router>
+      <Routes>
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/projects" element={<ProjectPage />} />
+      </Routes>
+    </Router>
+  );
 
-
-
-        <LandingPage />
-
-      
-
-    </>
-  )
 }
 
-export default App
+export default App;
