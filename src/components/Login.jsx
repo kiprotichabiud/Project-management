@@ -16,22 +16,34 @@ function Login() {
   };
 
   return (
-    <div className='form-box-login'> 
-      <form onSubmit={handleSubmit}>
-        <h1>Login Form</h1>
-        <div className='login-box'> 
-          <input type="text" name="username" placeholder='Username' required onChange={handleChange}/>
-        </div>
-        <div className='login-box'> 
-          <input type="password" name="password" placeholder='Password' required onChange={handleChange}/>
-        </div>
-        <div className='reminder'>
-          <label><input type="checkbox" /> Remember me</label>
-          <a href='#'> Forgot password</a>
-        </div>   
-        <button type='submit'>Login</button>
-      </form>
-      <p>Don't have an account? <button onClick={() => navigate('/signup')}>Sign Up</button></p>
+    <div className="min-h-screen bg-cover bg-center flex items-center justify-center"
+      style={{ backgroundImage: "url('https://images.unsplash.com/photo-1715331999602-fc92b7eb975e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mjd8fHdhdnklMjBjb2xvdXJpbmd8ZW58MHx8MHx8fDA%3D')" }}>
+      <div className="bg-white bg-opacity-60 p-8 rounded-lg shadow-lg max-w-md w-full">
+        <h1 className="text-3xl font-bold text-center mb-6">Login Form</h1>
+        <form onSubmit={handleSubmit}>
+          <div className="mb-4">
+            <input type="text" name="username" placeholder="Username" required onChange={handleChange}
+              className="w-full p-3 rounded-md bg-gray-100 text-gray-800 border focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div className="mb-4">
+            <input type="password" name="password" placeholder="Password" required onChange={handleChange}
+              className="w-full p-3 rounded-md bg-gray-100 text-gray-800 border focus:outline-none focus:ring-2 focus:ring-blue-500" />
+          </div>
+          <div className="flex items-center justify-between mb-6">
+            <label className="flex items-center">
+              <input type="checkbox" className="mr-2" /> Remember me
+            </label>
+            <a href="#" className="text-blue-600 hover:underline">Forgot password?</a>
+          </div>
+          <button type="submit"
+            className="w-full bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 rounded-md transition duration-300">
+            Login
+          </button>
+        </form>
+        <p className="text-center mt-4">
+          Don't have an account? <button onClick={() => navigate('/signup')} className="text-blue-600 hover:underline">Sign Up</button>
+        </p>
+      </div>
     </div>
   );
 }
