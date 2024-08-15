@@ -24,7 +24,7 @@ function Login() {
    </form>
 </div>
 <p>
-        Don't  have an account?
+        Don't have an account?Sign up
         <button>  Signup</button>
       </p> 
     </div>
