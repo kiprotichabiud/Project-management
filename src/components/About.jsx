@@ -1,9 +1,13 @@
 import React from 'react'
+import NavBar from './NavBar'
 
 
 const About = () => {
   return (
+    <div>
+    <NavBar />
     <div className=' text-center m-4 p-16 justify-center  bg-slate-300'>
+      
         <h1 className=' font-bold mt-4'>About us</h1>
       <p>  Welcome to our Project Management Platform, where we are dedicated to empowering teams and individuals to achieve their goals through effective project management. Our platform is designed to simplify the complexities of project planning, execution, and monitoring, ensuring that your projects are delivered on time, within scope, and on budget.</p>
 
@@ -21,6 +25,7 @@ We believe that project management is more than just overseeing tasks; it's abou
 <h2 className='p-2'>Scalable Solutions: Whether you are managing a small team or a large enterprise project, our platform scales with your needs.</h2>
 <h2 className='p-2'>Expert Support: Our team of project management professionals is always here to support you with best practices and advice to overcome any challenges.</h2>
 </p>
+    </div>
     </div>
   )
 }

@@ -27,7 +27,7 @@ const LandingPage = () => {
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <NavBar /> 
     <div className='bg-cover' style={{backgroundImage: "url('https://plus.unsplash.com/premium_photo-1706259481452-f857c96ceaca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdCUyMG1hbmFnZW1lbnR8ZW58MHx8MHx8fDA%3D')"}}>
-      <header className="bg-white shadow-md py-6 text-center mt-20">
+      <header className=" shadow-md py-6 text-center mt-20">
         <h1 className="text-4xl font-bold text-gray-900">Welcome to Our Service</h1>
         <p className="text-xl text-gray-600">Sign up today!</p>
       </header>
@@ -37,7 +37,7 @@ const LandingPage = () => {
         <div className="max-w-3xl mx-auto">
           <Slider {...settings}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+              <div key={index} className="bg-white opacity-80 p-6 rounded-lg shadow-lg">
                 <p className="text-lg text-gray-700 mb-4">"{testimonial.text}"</p>
                 <p className="text-md text-gray-900 font-semibold ">~ {testimonial.name}</p>
               </div>

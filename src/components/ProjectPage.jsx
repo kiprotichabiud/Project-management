@@ -25,6 +25,7 @@ const ProjectPage = () => {
   };
 
   const handleLogout = () => {
+    navigate('/signup')
   };
 
   return (
