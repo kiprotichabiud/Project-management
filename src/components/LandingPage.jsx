@@ -1,6 +1,20 @@
-import React from 'react'
+
+import React, {useState, useEffect} from 'react'
+import './LandingPage.css';
+
 
 const LandingPage = () => {
+    const [testimonials, setTestimonials] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:3000/testimonials')
+          .then(response => response.json())
+          .then(data => { console.log(data)
+            setTestimonials(data);
+          })
+          .catch(error => console.error('Error fetching selected bots:', error));
+      }, []);
+ 
 
   return (
 
@@ -13,23 +27,18 @@ const LandingPage = () => {
 
       </header>
 
-      <section className="landing-content">
+      
 
-        <h2>Features</h2>
+      <section className="testimonials">
 
-        <ul>
-
-          <li>Team Collaboration</li>
-          <li>Task Management</li>
-          <li>Project Tracking</li>
-
-        </ul>
-
-        </section>
-
-        <section className="landing-footer">
-
-        <p></p>
+        <h2>What Our Users Say</h2>
+        <div className="testimonials-container"> {testimonials.map((testimonial, index) => (
+            <div key={index} className="testimonial">
+              <p>"{testimonial.text}"</p>
+              <p><b>- {testimonial.name}</b></p>
+            </div>
+          ))}
+        </div>
 
       </section>
 
@@ -44,4 +53,3 @@ const LandingPage = () => {
 };
 
 export default LandingPage;
-
