@@ -1,7 +1,7 @@
 import React from 'react'
 
 
-const ProjectPage = () => {
+const ProjectPage = ({openPopup}) => {
 
   return (
     <div className=''>
@@ -33,7 +33,7 @@ const ProjectPage = () => {
         </nav>
         <div className=' flex justify-evenly mt-14 p-16'>
         <div className="text-lg font-semibold ">User’s name</div>
-        <button className=" border-2 px-4 py-2 rounded ">
+        <button onClick={openPopup} className=" border-2 px-4 py-2 rounded ">
               Create Project
             </button>
             </div>
@@ -42,13 +42,10 @@ const ProjectPage = () => {
         <h1 className="text-2xl font-bold mb-4">Welcome to Project Management </h1>
     
         
-        <div className="mb-4">
-          
-            
-          
-        </div>
         
-        <p className="text-gray-700">+ Click here to create a new project</p>
+        <div className='bg-slate-300 h-64'>
+        <p onClick={openPopup} className="text-gray-700 cursor-pointer text-2xl py-28">+ Click here to create a new project</p>
+        </div>
       </main>
 
       <footer className=' justify-center flex flex-end' >
