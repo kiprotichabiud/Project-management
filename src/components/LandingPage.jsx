@@ -1,89 +1,69 @@
+ 
 
 import React from 'react'
 import './LandingPage.css';
 
-
-const LandingPage = () => {
-
-const testimonials = [
-    {
-      name: 'Abiud',
-      text: 'This project management tool has transformed the way our team collaborates. Highly recommend!'
-    },
-    {
-      name: 'Candy',
-      text: 'A fantastic tool with great features. It has helped us streamline our workflow and improve productivity.'
-    },
-    {
-      name: 'Nelly',
-      text: 'The customizable dashboards are a game-changer. We love how easy it is to track progress and manage tasks.'
-    },
-    {
-      name: 'Kevin',
-      text: 'An essential tool for any team looking to stay organized and efficient. The user interface is intuitive and easy to use.'
-    }
-  ];
-
-  
+import React, { useState, useEffect } from 'react';
+import NavBar from './NavBar'; 
+import Slider from 'react-slick';
+import 'slick-carousel/slick/slick.css'; 
+import 'slick-carousel/slick/slick-theme.css';
+import './LandingPage.css'; 
  
 
+const LandingPage = () => {
+  const [testimonials, setTestimonials] = useState([]);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/testimonials')
+      .then(response => response.json())
+      .then(data => setTestimonials(data))
+      .catch(error => console.error('Error fetching testimonials:', error));
+  }, []);
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1
+  };
+
   return (
-
-    <div className="landing-container">
-
-      <header className="landing-header">
-
-        <h1 className="heading">Welcome to Our Service</h1>
-        <p className="subheading"> Sign up today!</p>
-
+    <div className="bg-gray-100 min-h-screen flex flex-col">
+      <NavBar /> 
+    <div className='bg-cover' style={{backgroundImage: "url('https://plus.unsplash.com/premium_photo-1706259481452-f857c96ceaca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdCUyMG1hbmFnZW1lbnR8ZW58MHx8MHx8fDA%3D')"}}>
+      <header className=" shadow-md py-6 text-center mt-20">
+        <h1 className="text-4xl font-bold text-gray-900">Welcome to Our Service</h1>
+        <p className="text-xl text-gray-600">Sign up today!</p>
       </header>
 
-      <section className="landing-content">
-
-        <h2>Features</h2>
-
-        <ul>
-
-          <li>Team Collaboration</li>
-          <li>Task Management</li>
-          <li>Project Tracking</li>
-
-        </ul>
-
-        </section>
-
-        <section className="landing-footer">
-
-        <p>Your ultimate tool for managing projects efficientl</p>
-
-      </section>
-
-      <section className="testimonials">
-
-        <h2>What Our Users Say</h2>
-        <div className="testimonials-container"> {testimonials.map((testimonial, index) => (
-            <div key={index} className="testimonial">
-              <p>"{testimonial.text}"</p>
-              <p><b>- {testimonial.name}</b></p>
-            </div>
-          ))}
+      <section className="py-12 px-4 mt-20">
+        <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">What Our Users Say</h2>
+        <div className="max-w-3xl mx-auto">
+          <Slider {...settings}>
+            {testimonials.map((testimonial, index) => (
+              <div key={index} className="bg-white opacity-80 p-6 rounded-lg shadow-lg">
+                <p className="text-lg text-gray-700 mb-4 italic">"{testimonial.text}"</p>
+                <p className="text-md text-gray-900 font-semibold ">~ {testimonial.name}</p>
+              </div>
+            ))}
+          </Slider>
         </div>
-
       </section>
 
-      <section className="footer-copy">
-
-          <p>&copy; 2024 ProjectMaster. All rights reserved.</p>
-          
-       </section>
-
+      <section className="bg-gray-800 py-4 text-center text-white mt-16">
+        <p>&copy; 2024 ProjectMaster. All rights reserved.</p>
+      </section>
+    </div>
     </div>
   );
 };
 
 export default LandingPage;
+ 
 
-=======
+
 import React from 'react'
 
 const LandingPage = () => {
@@ -130,3 +110,5 @@ const LandingPage = () => {
 };
 
 export default LandingPag
+
+ 
