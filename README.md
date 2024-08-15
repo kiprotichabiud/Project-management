@@ -119,5 +119,5 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 For questions or feedback, please contact:
 
 - **Email**: kiprotichabiud@student.moringaschool.com
-- **GitHub**: [](https://github.com/kiprotichabiud)
+- **GitHub**: [(https://github.com/kiprotichabiud)]
 
