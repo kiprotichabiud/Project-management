@@ -25,7 +25,7 @@ const ProjectPage = () => {
   };
 
   const handleLogout = () => {
-    navigate('/signup')
+    navigate('/')
   };
 
   return (
@@ -33,7 +33,7 @@ const ProjectPage = () => {
       <div className='flex justify-evenly mt-14 p-16'>
         <div className="text-lg font-semibold">User’s name</div>
         <button onClick={openPopup} className="border-2 px-4 py-2 rounded">Create Project</button>
-        <button onClick={handleLogout} className="border-2 px-4 py-2 rounded ">Logout</button> {/* Logout Button */}
+        <button onClick={handleLogout} className="border-2 px-4 py-2 rounded ">Logout</button> 
       </div>
 
       <main className="text-center">

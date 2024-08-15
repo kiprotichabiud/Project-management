@@ -38,7 +38,7 @@ const LandingPage = () => {
           <Slider {...settings}>
             {testimonials.map((testimonial, index) => (
               <div key={index} className="bg-white opacity-80 p-6 rounded-lg shadow-lg">
-                <p className="text-lg text-gray-700 mb-4">"{testimonial.text}"</p>
+                <p className="text-lg text-gray-700 mb-4 italic">"{testimonial.text}"</p>
                 <p className="text-md text-gray-900 font-semibold ">~ {testimonial.name}</p>
               </div>
             ))}

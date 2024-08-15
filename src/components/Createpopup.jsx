@@ -16,6 +16,10 @@ function Createpopup({ isOpen, onClose, onSubmit }) {
     }
   };
 
+  const handleRemoveMember = (index) => {
+    setMembers(members.filter((_, i) => i !== index));
+  };
+
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name && description && projectUrl) {
@@ -33,41 +37,75 @@ function Createpopup({ isOpen, onClose, onSubmit }) {
 
   return (
     <Popup open={isOpen} onClose={onClose}>
-      <div className="popup-content">
-        <h2>Create New Project</h2>
-        <form onSubmit={handleSubmit}>
-          <input 
-            type="text" 
-            placeholder="Project Name" 
-            value={name} 
-            onChange={(e) => setName(e.target.value)} 
-          />
-          <textarea 
-            placeholder="Project Description" 
-            value={description} 
-            onChange={(e) => setDescription(e.target.value)} 
-          />
-          <input 
-            type="url" 
-            placeholder="Project URL" 
-            value={projectUrl} 
-            onChange={(e) => setProjectUrl(e.target.value)} 
-          />
-          <div className="members-input">
+      <div>
+        <h2 className='text-2xl text-center font-bold'>Create New Project</h2>
+        <form onSubmit={handleSubmit} className="space-y-4 rounded-xl">
+          <div>
+            <label htmlFor="name" className="block text-black mb-2 font-bold">Project Name</label>
             <input 
               type="text" 
-              placeholder="Add Team Member" 
-              value={memberInput} 
-              onChange={(e) => setMemberInput(e.target.value)} 
+              placeholder="Project Name" 
+              value={name} 
+              className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"
+              onChange={(e) => setName(e.target.value)} 
             />
-            <button type="button" onClick={handleAddMember}>Add</button>
           </div>
-          <div className="members-list">
+          <div>
+            <label htmlFor="description" className="block text-black mb-2 font-bold">Description</label>
+            <textarea 
+              placeholder="Project Description" 
+              value={description} 
+              className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"
+              onChange={(e) => setDescription(e.target.value)} 
+            />
+          </div>
+          <div>
+            <label htmlFor="Github Repo URL" className="block text-black mb-2 font-bold">Github Repo URL</label>
+            <input 
+              type="url" 
+              placeholder="Project URL" 
+              value={projectUrl} 
+              className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"
+              onChange={(e) => setProjectUrl(e.target.value)} 
+            />
+          </div>
+          
+          <div className="">
+            <label htmlFor="Team members" className="block text-black mb-2 font-bold">Team members</label>
+            <div className='flex'>
+              <input 
+                type="text" 
+                placeholder="Add Team Member" 
+                value={memberInput} 
+                className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"
+                onChange={(e) => setMemberInput(e.target.value)} 
+              />
+              <button type="button" className='bg-blue-500 w-20 rounded-md justify-between font-bold' onClick={handleAddMember}>Add</button>
+            </div>
+          </div>
+          <div className="members-list mt-2">
             {members.map((member, index) => (
-              <span key={index} className="member-item">{member}</span>
+              <div key={index} className="flex items-center mb-1 justify-around border-gray-300 border-2 rounded-lg">
+                <span className="member-item mr-2">{member}</span>
+                <button 
+                  type="button" 
+                  className="text-red-500  font-bold "
+                  onClick={() => handleRemoveMember(index)}
+                >
+                  Delete
+                </button>
+              </div>
             ))}
           </div>
-          <button type="submit">Create Project</button>
+          <br />
+          <div className="flex justify-center">
+            <button 
+              type="submit" 
+              className="bg-blue-500 hover:bg-blue-600 min-w-40 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300"
+            >
+              Create New Project
+            </button>
+          </div>
         </form>
       </div>
     </Popup>
