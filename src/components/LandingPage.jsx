@@ -1,15 +1,9 @@
- 
-
-import React from 'react'
-import './LandingPage.css';
-
 import React, { useState, useEffect } from 'react';
 import NavBar from './NavBar'; 
 import Slider from 'react-slick';
 import 'slick-carousel/slick/slick.css'; 
 import 'slick-carousel/slick/slick-theme.css';
 import './LandingPage.css'; 
- 
 
 const LandingPage = () => {
   const [testimonials, setTestimonials] = useState([]);
@@ -32,83 +26,31 @@ const LandingPage = () => {
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <NavBar /> 
-    <div className='bg-cover' style={{backgroundImage: "url('https://plus.unsplash.com/premium_photo-1706259481452-f857c96ceaca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdCUyMG1hbmFnZW1lbnR8ZW58MHx8MHx8fDA%3D')"}}>
-      <header className=" shadow-md py-6 text-center mt-20">
+
+      <header className="bg-white shadow-md py-6 text-center">
         <h1 className="text-4xl font-bold text-gray-900">Welcome to Our Service</h1>
         <p className="text-xl text-gray-600">Sign up today!</p>
       </header>
 
-      <section className="py-12 px-4 mt-20">
+      <section className="py-12 px-4">
         <h2 className="text-3xl font-semibold text-center text-gray-800 mb-6">What Our Users Say</h2>
         <div className="max-w-3xl mx-auto">
           <Slider {...settings}>
             {testimonials.map((testimonial, index) => (
-              <div key={index} className="bg-white opacity-80 p-6 rounded-lg shadow-lg">
-                <p className="text-lg text-gray-700 mb-4 italic">"{testimonial.text}"</p>
-                <p className="text-md text-gray-900 font-semibold ">~ {testimonial.name}</p>
+              <div key={index} className="bg-white p-6 rounded-lg shadow-lg">
+                <p className="text-lg text-gray-700 mb-4">"{testimonial.text}"</p>
+                <p className="text-md text-gray-900 font-semibold">~ {testimonial.name}</p>
               </div>
             ))}
           </Slider>
         </div>
       </section>
 
-      <section className="bg-gray-800 py-4 text-center text-white mt-16">
+      <section className="bg-gray-800 py-4 text-center text-white">
         <p>&copy; 2024 ProjectMaster. All rights reserved.</p>
       </section>
-    </div>
     </div>
   );
 };
 
 export default LandingPage;
- 
-
-
-import React from 'react'
-
-const LandingPage = () => {
-
-  return (
-
-    <div className="landing-container">
-
-      <header className="landing-header">
-
-        <h1 className="heading">Welcome to Our Service</h1>
-        <p className="subheading"> Sign up today!</p>
-
-      </header>
-
-      <section className="landing-content">
-
-        <h2>Features</h2>
-
-        <ul>
-
-          <li>Team Collaboration</li>
-          <li>Task Management</li>
-          <li>Project Tracking</li>
-
-        </ul>
-
-        </section>
-
-        <section className="landing-footer">
-
-        <p></p>
-
-      </section>
-
-      <section className="footer-copy">
-
-          <p>&copy; 2024 ProjectMaster. All rights reserved.</p>
-          
-       </section>
-
-    </div>
-  );
-};
-
-export default LandingPag
-
- 
