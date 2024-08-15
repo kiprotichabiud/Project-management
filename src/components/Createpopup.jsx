@@ -9,31 +9,31 @@ function Createpopup({isOpen, onClose}) {
       
       
       <Popup open={isOpen} onClose={onClose} modal className='rounded-xl'>
-            <div className="bg-gray-200 rounded-lg shadow-xl p-6" style={{ width: '600px' }}>
+            <div className=" rounded-lg shadow-xl p-6" >
                 <h2 className="text-2xl font-bold text-center text-gray-700 mb-4">New Project</h2>
                 <div>
-                  <label htmlFor="name">NAME:</label>
-                  <input type="text" placeholder='Name' />
+                  <label htmlFor="name" className="block text-black mb-2">NAME:</label>
+                  <input type="text" placeholder='Name' className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"/>
                 </div>
                 <div>
-                  <label htmlFor="description">DESCRIPTION:</label>
-                  <input type="text" placeholder='Description' />
+                  <label htmlFor="description" className="block text-black mb-2">DESCRIPTION:</label>
+                  <input type="text" placeholder='Description' className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"/>
                 </div>
                 <div>
-                  <label htmlFor="project_url">PROJECT_URL</label>
-                  <input type="text" placeholder='Project_url' />
+                  <label htmlFor="project_url" className="block text-black mb-2">PROJECT_URL</label>
+                  <input type="text" placeholder='Project_url' className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"/>
                 </div>
                 <div>
-                  <label htmlFor="members">MEMBERS:</label>
-                  <input type="text" placeholder='Members' />
+                  <label htmlFor="members" className="block text-black mb-2">MEMBERS:</label>
+                  <input type="text" placeholder='Members' className="w-full border border-gray-300 rounded-lg p-2 cursor-text focus:ring-2 focus:ring-blue-500 outline-none"/>
                 </div>
                 <div>
                   <ul>
                     <li></li>
                   </ul>
-                </div>
-                <div>
-                  <button>Create Project</button>
+                </div><br />
+                <div className="flex justify-center">
+                  <button className="bg-blue-500 hover:bg-blue-600 min-w-40 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300">Create Project</button>
                 </div>
             </div>
         </Popup>
