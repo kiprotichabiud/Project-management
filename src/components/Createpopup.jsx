@@ -114,7 +114,7 @@ function Createpopup({ isOpen, onClose, onSubmit }) {
                   onClick={() => removeMember(index)}
                   className="text-red-500 hover:text-red-700 font-bold"
                 >
-                  X
+                  Remove
                 </button>
               </li>
             ))}

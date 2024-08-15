@@ -3,7 +3,7 @@ import Createpopup from './Createpopup';
 
 const ProjectPage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [project, setProject] = useState(null);
+  const [projects, setProjects] = useState([]); // Initialize as an empty array
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -14,8 +14,12 @@ const ProjectPage = () => {
   };
 
   const handleProjectSubmit = (projectData) => {
-    setProject(projectData);
+    setProjects((prevProjects) => [...prevProjects, projectData]); // Add new project to the array
     closePopup();
+  };
+
+  const deleteProject = (indexToRemove) => {
+    setProjects((prevProjects) => prevProjects.filter((_, index) => index !== indexToRemove));
   };
 
   return (
@@ -46,13 +50,21 @@ const ProjectPage = () => {
         <h1 className="text-2xl font-bold mb-4">Welcome to Project Management</h1>
 
         <div className='bg-slate-300 h-64 flex items-center justify-center'>
-          {project ? (
-            <div className="p-4 bg-white border border-gray-300 rounded-lg shadow-md w-72">
-              <h2 className="text-lg font-bold mb-2">{project.name}</h2>
-              <p className="text-sm text-gray-700 mb-2"><strong>Description:</strong> {project.description}</p>
-              <p className="text-sm text-gray-700 mb-2"><strong>Project URL:</strong> <a href={project.project_url} className="text-blue-500 hover:underline">{project.project_url}</a></p>
-              <p className="text-sm text-gray-700"><strong>Members:</strong> {project.members.join(', ')}</p>
-            </div>
+          {projects.length > 0 ? (
+            projects.map((project, index) => (
+              <div key={index} className="relative p-4 bg-white border border-gray-300 rounded-lg shadow-md w-72 m-4">
+                <button 
+                  className="absolute top-2 right-2 text-slate-500 "
+                  onClick={() => deleteProject(index)}
+                >
+                  X
+                </button>
+                <h2 className="text-lg font-bold mb-2">{project.name}</h2>
+                <p className="text-sm text-gray-700 mb-2"><strong>Description:</strong> {project.description}</p>
+                <p className="text-sm text-gray-700 mb-2"><strong>Project URL:</strong> <a href={project.project_url} className="text-blue-500 hover:underline">{project.project_url}</a></p>
+                <p className="text-sm text-gray-700"><strong>Members:</strong> {project.members.join(', ')}</p>
+              </div>
+            ))
           ) : (
             <p onClick={openPopup} className="text-gray-700 cursor-pointer text-xl py-28">
               + Click here to create a new project
