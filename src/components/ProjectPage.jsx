@@ -12,8 +12,22 @@ const ProjectPage = () => {
           
             <li>Home</li>
             <li> About</li>
-            <button className=' border-2 p-2 m-4 w-60 rounded-md' >search</button>
-            <li>Logout</li>
+            <button className=' border-2 p-2 m-4 w-60 rounded-md shadow-md' >search</button>
+            <li><div className="max-w-md mx-auto p-4 border border-gray-300 rounded-lg shadow-md">
+     
+      
+     
+        <button
+          
+          
+        >
+          Logout
+        </button>
+   
+
+     
+      
+    </div></li>
           </ul>
    
         </nav>
