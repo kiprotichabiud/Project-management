@@ -1,45 +1,39 @@
-import React from 'react'
-import { useState } from 'react'
-import Createpopup from './Createpopup'
-import ProjectPage from './ProjectPage';
-
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function Login() {
-  const [isOpen, setIsOpen] = useState(false);
+  const navigate = useNavigate();
+  const [credentials, setCredentials] = useState({ username: '', password: '' });
 
-  const openPopup = () => setIsOpen(true);
-  const closePopup = () => setIsOpen(false);
+  const handleChange = (e) => {
+    setCredentials({ ...credentials, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    // Handle login logic here
+    navigate('/projects'); // Redirect to ProjectPage after successful login
+  };
+
   return (
-    <div>
-<div  className='form-b0x-login'> 
-   <form action="">
-    <h1>Login form </h1>
-    <div className='login-box'> 
-     <input type="text" placeholder='Name'  required/>    
+    <div className='form-box-login'> 
+      <form onSubmit={handleSubmit}>
+        <h1>Login Form</h1>
+        <div className='login-box'> 
+          <input type="text" name="username" placeholder='Username' required onChange={handleChange}/>
+        </div>
+        <div className='login-box'> 
+          <input type="password" name="password" placeholder='Password' required onChange={handleChange}/>
+        </div>
+        <div className='reminder'>
+          <label><input type="checkbox" /> Remember me</label>
+          <a href='#'> Forgot password</a>
+        </div>   
+        <button type='submit'>Login</button>
+      </form>
+      <p>Don't have an account? <button onClick={() => navigate('/signup')}>Sign Up</button></p>
     </div>
-    <div className='login-box'>
-        <input type="text" placeholder='Username' required/>
-    </div>
-    <div className='login-box'> 
-           <input type="password"  placeholder='Password' required/>
-           </div>
-    <div className='reminder'>
-              <label><input type="checkbox"  /> Remember me</label>
-              <a  href='#'> Forgot password</a>
-            </div>   
-  
-<button type='submit'>login </button>
-   </form>
-</div>
-<p>
-        Don't have an account?Sign up
-        <button>  Signup</button>
-      </p> 
-      <ProjectPage openPopup={openPopup}/>
-    
-    <Createpopup isOpen={isOpen} onClose={closePopup} />
-    </div>
-  )
+  );
 }
 
-export default Login
+export default Login;

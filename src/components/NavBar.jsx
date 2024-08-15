@@ -1,20 +1,18 @@
-import React from 'react'
+import React from 'react';
+import { Link } from 'react-router-dom';
 
 function NavBar() {
   return (
-    <div>
-        {/* <img src="https://i.pinimg.com/564x/87/3b/8e/873b8eec2f539668393e2c68cd0b2bc5.jpg" alt="project logo" className=''/ > */}
-        <ul>
-            <li>Home</li>
-            <li>About</li>
-            <li>Sign-up</li>
-            <li>Login</li>    
-       </ul>
-
-
-
-    </div>
-  )
+    <nav className="navbar">
+      <img src="https://i.pinimg.com/564x/87/3b/8e/873b8eec2f539668393e2c68cd0b2bc5.jpg" alt="project logo" className='w-16 h-16' />
+      <ul className="flex gap-8 items-center">
+        <li><Link to="/">Home</Link></li>
+        <li><Link to="/about">About</Link></li>
+        <li><Link to="/signup">Sign-up</Link></li>
+        <li><Link to="/login">Login</Link></li>
+      </ul>
+    </nav>
+  );
 }
 
-export default NavBar
+export default NavBar;
