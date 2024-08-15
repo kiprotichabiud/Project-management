@@ -9,7 +9,7 @@ const LandingPage = () => {
   const [testimonials, setTestimonials] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/testimonials')
+    fetch('https://project-management-db.vercel.app/testimonials')
       .then(response => response.json())
       .then(data => setTestimonials(data))
       .catch(error => console.error('Error fetching testimonials:', error));
