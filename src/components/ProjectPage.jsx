@@ -103,6 +103,7 @@ const ProjectPage = () => {
         onSubmit={handleProjectSubmit} 
       />
     </div>
+    </div>
   );
 }
 
