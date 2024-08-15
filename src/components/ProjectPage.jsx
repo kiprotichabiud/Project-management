@@ -3,7 +3,7 @@ import Createpopup from './Createpopup';
 
 const ProjectPage = () => {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-  const [projects, setProjects] = useState([]); // Initialize as an empty array
+  const [projects, setProjects] = useState([]); 
 
   const openPopup = () => {
     setIsPopupOpen(true);
@@ -14,7 +14,7 @@ const ProjectPage = () => {
   };
 
   const handleProjectSubmit = (projectData) => {
-    setProjects((prevProjects) => [...prevProjects, projectData]); // Add new project to the array
+    setProjects((prevProjects) => [...prevProjects, projectData]); 
     closePopup();
   };
 
@@ -104,7 +104,9 @@ const ProjectPage = () => {
       />
     </div>
     </div>
+
   );
 }
 
-export default ProjectPage;
+
+export default ProjectPage

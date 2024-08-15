@@ -1,6 +1,14 @@
 import React from 'react'
+import { useState } from 'react'
+import Createpopup from './Createpopup'
+import ProjectPage from './ProjectPage';
+
 
 function Login() {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const openPopup = () => setIsOpen(true);
+  const closePopup = () => setIsOpen(false);
   return (
     <div>
 <div  className='form-b0x-login'> 
@@ -27,6 +35,9 @@ function Login() {
         Don't have an account?Sign up
         <button>  Signup</button>
       </p> 
+      <ProjectPage openPopup={openPopup}/>
+    
+    <Createpopup isOpen={isOpen} onClose={closePopup} />
     </div>
   )
 }
