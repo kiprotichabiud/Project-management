@@ -20,13 +20,16 @@ user_projects = db.Table('user_projects',
 class User(db.Model, SerializerMixin):
     __tablename__ = 'users'  
 
-    serialize_rules = ('-teams.user',)  # Updated from posts to teams
+    serialize_rules = ('-teams.user',)  
+
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
+    name = db.Column(db.String(80), nullable=False)
+    password = db.Column(db.String(60), nullable=False)
 
-    teams = db.relationship('Team', back_populates='user', lazy=True)  # Updated from posts to teams
-    projects = db.relationship('Project', secondary=user_projects, back_populates='users', lazy=True)
+    teams = db.relationship('Team', back_populates='user', lazy=True)  
+    projects = db.relationship('Project', secondary=user_projects, back_populates='users')
 
     @validates('email')
     def validate_email(self, key, value):
@@ -40,10 +43,10 @@ class Team(db.Model, SerializerMixin):
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(80), unique=True, nullable=False)
-    description = db.Column(db.String(120), nullable=False)  # Kept description as not unique
+    description = db.Column(db.String(120), nullable=False)  
     
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    user = db.relationship('User', back_populates='teams', lazy=True)  # Updated from posts to teams
+    user = db.relationship('User', back_populates='teams', lazy=True)
 
 class Project(db.Model, SerializerMixin):
     __tablename__ = 'projects'
@@ -53,4 +56,4 @@ class Project(db.Model, SerializerMixin):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
 
-    users = db.relationship('User', secondary=user_projects, back_populates='projects', lazy=True)
+    users = db.relationship('User', secondary=user_projects, back_populates='projects')
