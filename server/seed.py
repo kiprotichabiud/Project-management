@@ -8,8 +8,8 @@ with app.app_context():
     db.session.commit()
     
     User.query.delete()
-    Team.query.delete()  # Updated from Project to Team
-    Project.query.delete()  # Updated from Group to Project
+    Team.query.delete()  
+    Project.query.delete() 
 
     
 
@@ -30,11 +30,16 @@ with app.app_context():
     db.session.commit()
     
     # Create teams
-    t1 = Team(title="Team 1", description="Team 1 description", user=u1)
-    t2 = Team(title="Team 2", description="Team 2 description", user=u6)
-    t3 = Team(title="Team 3", description="Team 3 description", user=u4)
-    t4 = Team(title="Team 4", description="Team 4 description", user=u2)
-    t5 = Team(title="Team 5", description="Team 5 description", user=u1)
+    t1 = Team(title="Design", description="Design Team ", user=u4)
+    t2 = Team(title="Development", description="Development Team", user=u7)
+    t3 = Team(title="Marketing", description=" Marketing Team n", user=u6)
+    t4 = Team(title="Support", description="Support Team ", user=u10)
+    t5 = Team(title="Analystic", description="Data Analystic Team ", user=u3)
+    t1 = Team(title="Design", description="Design Team", user=u8)
+    t2 = Team(title="Development", description=" Development Team ", user=u5)
+    t3 = Team(title="Marketing", description="Marketing Team ", user=u9)
+    t4 = Team(title="Support", description=" Support Team ", user=u1)
+    t5 = Team(title="Analystic", description=" Data Analystic Team ", user=u2)
     
     db.session.add_all([t1, t2, t3, t4, t5])
     db.session.commit()
@@ -52,14 +57,7 @@ with app.app_context():
     # Add projects to users
     u1.projects.append(p5)
     u2.projects.append(p4)
-    # u3.projects.append(p3)
-    # u4.projects.append(p1)
-    # u5.projects.append(p1)
-    # u6.projects.append(p3)
-    # u7.projects.append(p2)
-    # u8.projects.append(p4)
-    # u9.projects.append(p2)
-    # u10.projects.append(p5)
+    
     
     # Add users to projects
     p5.users.append(u3)     
