@@ -35,13 +35,13 @@ with app.app_context():
     t3 = Team(title="Marketing", description=" Marketing Team n", user=u6)
     t4 = Team(title="Support", description="Support Team ", user=u10)
     t5 = Team(title="Analystic", description="Data Analystic Team ", user=u3)
-    t1 = Team(title="Design", description="Design Team", user=u8)
-    t2 = Team(title="Development", description=" Development Team ", user=u5)
-    t3 = Team(title="Marketing", description="Marketing Team ", user=u9)
-    t4 = Team(title="Support", description=" Support Team ", user=u1)
-    t5 = Team(title="Analystic", description=" Data Analystic Team ", user=u2)
+    t6 = Team(title="Design", description="Design Team", user=u8)
+    t7 = Team(title="Development", description=" Development Team ", user=u5)
+    t8 = Team(title="Marketing", description="Marketing Team ", user=u9)
+    t9 = Team(title="Support", description=" Support Team ", user=u1)
+    t10 = Team(title="Analystic", description=" Data Analystic Team ", user=u2)
     
-    db.session.add_all([t1, t2, t3, t4, t5])
+    db.session.add_all([t1, t2, t3, t4, t5, t6, t7, t8, t9, t10])
     db.session.commit()
     
     # Create projects
