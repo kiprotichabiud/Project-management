@@ -20,6 +20,8 @@ with app.app_context():
     u6 = User(username="Kamundi", email="kamundi@gmail.com")
     u7 = User(username="Matu", email="matu@gmail.com")
     u8 = User(username="Kiprotich", email="kiprotch@gmail.com")
+    u9 = User(username="Victor", email="victor@gmail.com")
+    u10 = User(username="Nithin", email="nithin@gmail.com")
     
     db.session.add_all([u1, u2, u3, u4, u5, u6, u7, u8])
     db.session.commit()
@@ -30,13 +32,8 @@ with app.app_context():
     t3 = Team(title="Team 3", description="Team 3 description", user=u4)
     t4 = Team(title="Team 4", description="Team 4 description", user=u2)
     t5 = Team(title="Team 5", description="Team 5 description", user=u1)
-    t6 = Team(title="Team 6", description="Team 6 description", user=u3)
-    t7 = Team(title="Team 7", description="Team 7 description", user=u8)
-    t8 = Team(title="Team 8", description="Team 8 description", user=u5)
-    t9 = Team(title="Team 9", description="Team 9 description", user=u7)
-    t10 = Team(title="Team 10", description="Team 10 description", user=u2)
     
-    db.session.add_all([t1, t2, t3, t4, t5, t6, t7, t8, t9, t10])
+    db.session.add_all([t1, t2, t3, t4, t5])
     db.session.commit()
     
     # Create projects
