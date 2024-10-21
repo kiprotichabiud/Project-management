@@ -14,18 +14,16 @@ function Login() {
     e.preventDefault();
     
     try {
-      const response = await fetch('https://project-management-db.vercel.app/users');
+      const response = await fetch('http://127.0.0.1:5000/users');
       const users = await response.json();
       const user = users.find(u => u.username === credentials.username && u.password === credentials.password);
 
       if (user) {
-        // You may want to store user data or token in localStorage here
         navigate('/projects');
       } else {
         setError('Invalid username or password');
       }
     } catch (error) {
-      console.error('Failed to fetch users:', error);
       setError('An error occurred while logging in');
     }
   };

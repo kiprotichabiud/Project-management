@@ -1,97 +1,77 @@
-from flask import Flask, make_response, jsonify, request
-from models import * 
-from flask_migrate import Migrate
+from flask import Flask, jsonify, request  
+from flask_sqlalchemy import SQLAlchemy
+from models import db, User, Team, Project  
+from flask_cors import CORS
+
 
 app = Flask(__name__)
+CORS(app)
 
+app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'  
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///management.db'
-app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False  
-
-migrate = Migrate(app, db)
 db.init_app(app)
-
 
 @app.route('/')
 def index():
-    return "Welcome to Flask"
+    return "Welcome to the User-Project-Team Management API!"
 
+@app.route('/users', methods=['GET'])
+def get_users():
+    users = User.query.all()
+    return jsonify([user.to_dict() for user in users])  
 
-@app.route('/users', methods=['GET', 'POST'])
-def users():
-    if request.method == 'GET':
-        
-        users = User.query.all()
-        response = [user.to_dict() for user in users]
-        return make_response(jsonify(response), 200)
+@app.route('/users', methods=['POST'])
+def create_user():
+    data = request.get_json()
 
-    if request.method == 'POST':
-        # Handle user creation
-        data = request.get_json()
-        new_user = User(username=data['username'], email=data['email'])
-        db.session.add(new_user)
-        db.session.commit()
+    if User.query.filter_by(email=data['email']).first():
+        return jsonify({"message": "User already exists"}), 400
+    
+    # Create new user
+    new_user = User(
+        name=data['name'],
+        username=data['username'],
+        email=data['email'],
+        password=data['password'] 
+    )
 
-        return make_response({'message': 'User created successfully'}, 201)
+    db.session.add(new_user)
+    db.session.commit()
+    return jsonify(new_user.to_dict()), 201
 
+@app.route('/teams', methods=['GET'])
+def get_teams():
+    teams = Team.query.all()
+    return jsonify([team.to_dict() for team in teams])  
 
-@app.route('/users/<int:id>', methods=['GET', 'PATCH', 'DELETE'])
-def user(id):
-    user = User.query.get(id)
-    if not user:
-        return make_response({'error': 'User not found'}, 404)
+@app.route('/projects', methods=['GET'])
+def get_projects():
+    projects = Project.query.all()
+    return jsonify([project.to_dict() for project in projects])  
 
-    if request.method == 'GET':
-        return make_response(user.to_dict(), 200)
+@app.route('/projects', methods=['POST'])
+def create_project():
+    data = request.get_json()
 
-    if request.method == 'DELETE':
-        db.session.delete(user)
-        db.session.commit()
-        return make_response({'message': 'User deleted successfully'}, 200)
+    new_project = Project(
+        name=data['name']
+    )
 
-    if request.method == 'PATCH':
-        data = request.get_json()
-        for attr, value in data.items():
-            setattr(user, attr, value)
-        db.session.commit()
-        return make_response(user.to_dict(), 200)
+    db.session.add(new_project)
+    db.session.commit()
+    return jsonify(new_project.to_dict()), 201
 
+@app.route('/user/<int:user_id>', methods=['GET'])
+def get_user(user_id):
+    user = User.query.get_or_404(user_id)
+    user_data = user.to_dict()
+    user_data['teams'] = [team.to_dict() for team in user.teams]
+    user_data['projects'] = [project.to_dict() for project in user.projects]
+    return jsonify(user_data)
 
-@app.route('/teams', methods=['GET', 'POST'])
-def teams():
-    if request.method == 'GET':
-        
-        teams = Team.query.all()
-        response = [team.to_dict() for team in teams]
-        return make_response(jsonify(response), 200)
-
-    if request.method == 'POST':
-        
-        data = request.get_json()
-        new_team = Team(title=data['title'], description=data['description'], user_id=data['user_id'])
-        db.session.add(new_team)
-        db.session.commit()
-
-        return make_response({'message': 'Team created successfully'}, 201)
-
-
-@app.route('/projects', methods=['GET', 'POST'])
-def projects():
-    if request.method == 'GET':
-        # Fetch and return all projects
-        projects = Project.query.all()
-        response = [project.to_dict() for project in projects]
-        return make_response(jsonify(response), 200)
-
-    if request.method == 'POST':
-        
-        data = request.get_json()
-        new_project = Project(name=data['name'])
-        db.session.add(new_project)
-        db.session.commit()
-
-        return make_response({'message': 'Project created successfully'}, 201)
-
-
+# Run the app
 if __name__ == '__main__':
-    app.run(port=8080, debug=True)
+    with app.app_context():
+        db.create_all()  
+    app.run(debug=True)
