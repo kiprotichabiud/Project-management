@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import axios from 'axios';
 
 function SignUp() {
   const navigate = useNavigate();
@@ -15,10 +16,21 @@ function SignUp() {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (formData.password === formData.confirmPassword) {
-      navigate('/projects'); 
+      try {
+        // Post formData to Flask API
+        await axios.post('http://127.0.0.1:5000/users', {
+          name: formData.name,
+          username: formData.username,
+          email: formData.email,
+          password: formData.password
+        });
+        navigate('/projects'); // Navigate to projects page after successful signup
+      } catch (error) {
+        alert('Error signing up: ' + error.message);
+      }
     } else {
       alert("Passwords do not match!");
     }
