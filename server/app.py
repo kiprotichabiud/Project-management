@@ -3,9 +3,8 @@ from flask_sqlalchemy import SQLAlchemy
 from models import db, User, Team, Project  
 from flask_cors import CORS
 
-
 app = Flask(__name__)
-CORS(app)
+CORS(app, resources={r"/*": {"origins": "http://localhost:5173"}})
 
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///mydatabase.db'  
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
@@ -43,7 +42,35 @@ def create_user():
 @app.route('/teams', methods=['GET'])
 def get_teams():
     teams = Team.query.all()
-    return jsonify([team.to_dict() for team in teams])  
+    return jsonify([team.to_dict() for team in teams])
+
+# Add POST route for creating a new team
+@app.route('/teams', methods=['POST'])
+def create_team():
+    data = request.get_json()
+
+    # Check if the project exists
+    project = Project.query.get(data.get('project_id'))
+    if not project:
+        return jsonify({"message": "Project not found"}), 404
+
+    # Create new team
+    new_team = Team(
+        name=data['name'],
+        project_id=project.id  # Linking team to the project
+    )
+
+    db.session.add(new_team)
+    db.session.commit()
+
+    # Optionally, add users to the team if provided
+    if 'user_ids' in data:
+        users = User.query.filter(User.id.in_(data['user_ids'])).all()
+        if users:
+            new_team.users.extend(users)
+            db.session.commit()
+
+    return jsonify(new_team.to_dict()), 201
 
 @app.route('/projects', methods=['GET'])
 def get_projects():
