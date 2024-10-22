@@ -80,7 +80,7 @@ def get_projects():
 @app.route('/projects', methods=['POST'])
 def create_project():
     data = request.get_json()
-
+    
     new_project = Project(
         name=data['name']
     )

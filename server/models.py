@@ -51,7 +51,7 @@ class Team(db.Model, SerializerMixin):
 
 class Project(db.Model, SerializerMixin):
     __tablename__ = 'projects'
-
+    
     serialize_rules = ('-users.projects',)
 
     id = db.Column(db.Integer, primary_key=True)
