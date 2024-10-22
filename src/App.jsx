@@ -5,6 +5,7 @@ import SignUp from './components/SignUp';
 import Login from './components/Login';
 import ProjectPage from './components/ProjectPage';
 import About from './components/About';
+import Users from './components/users';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUp />} />
         <Route path="/login" element={<Login />} />
         <Route path="/projects" element={<ProjectPage />} />
+        <Route path="/users" element={<Users />} />
       </Routes>
     </Router>
   );
