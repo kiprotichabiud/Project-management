@@ -32,7 +32,7 @@ const ProjectPage = () => {
     <div className="bg-cover " style={{ backgroundImage: "url('https://media.istockphoto.com/id/2078267529/photo/illuminated-yellow-light-bulb-on-a-textured-dark-grey-wall-innovation-and-inspiration-concept.jpg?s=612x612&w=0&k=20&c=Lq_2kAIUghFUM6CejgTQRxnw-ak9s95PSk_tqWwTtWE=')" }}>
       
       <div className='flex justify-evenly mt-14 p-16'>
-        <div className="text-lg font-semibold text-white">User’s name</div>
+        <div className="text-lg font-semibold text-white">WELCOME</div>
         <button onClick={openPopup} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded shadow-lg">Create Project</button>
         <button onClick={handleLogout} className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded shadow-lg ">Logout</button> 
       </div>

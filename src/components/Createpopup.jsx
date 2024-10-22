@@ -8,6 +8,7 @@ function Createpopup({ isOpen, onClose, onSubmit }) {
   const [projectUrl, setProjectUrl] = useState('');
   const [members, setMembers] = useState([]);
   const [memberInput, setMemberInput] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const handleAddMember = () => {
     if (memberInput.trim() !== '') {
@@ -20,16 +21,69 @@ function Createpopup({ isOpen, onClose, onSubmit }) {
     setMembers(members.filter((_, i) => i !== index));
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (name && description && projectUrl) {
-      onSubmit({
-        name,
-        description,
-        project_url: projectUrl,
-        members
-      });
-      onClose();
+      setLoading(true);
+      try {
+        // Step 1: Store the project
+        const projectData = {
+          name,
+          description,
+          project_url: projectUrl,
+        };
+
+        const projectResponse = await fetch('http://127.0.0.1:5000/projects', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(projectData),
+        });
+
+        if (!projectResponse.ok) {
+          console.error('Error saving the project:', projectResponse.statusText);
+          alert('Failed to save the project');
+          setLoading(false);
+          return;
+        }
+
+        const savedProject = await projectResponse.json();
+        // Assuming savedProject returns a project ID or similar
+
+        // Step 2: Store the team members
+        const teamMembersData = members.map((member) => ({
+          project_id: savedProject.id, // Assuming the project ID is in the response
+          member_name: member,
+        }));
+
+        const teamResponse = await fetch('http://127.0.0.1:5000/teams', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(teamMembersData),
+        });
+
+        if (!teamResponse.ok) {
+          console.error('Error saving the team members:', teamResponse.statusText);
+          alert('Failed to save the team members');
+        }
+
+        const savedTeam = await teamResponse.json();
+
+        // Step 3: Call the parent onSubmit to pass the new project data
+        onSubmit({ project: savedProject, team: savedTeam });
+
+        // Close the popup after successful submission
+        onClose();
+
+      } catch (error) {
+        console.error('Error occurred:', error);
+        alert('An error occurred while saving the project and team members');
+      } finally {
+        setLoading(false);
+      }
     } else {
       alert('Please fill in all fields');
     }
@@ -102,8 +156,9 @@ function Createpopup({ isOpen, onClose, onSubmit }) {
             <button 
               type="submit" 
               className="bg-blue-500 hover:bg-blue-600 min-w-40 text-white font-semibold py-2 px-4 rounded-lg shadow-lg transition duration-300"
+              disabled={loading} onClick={handleSubmit}
             >
-              Create New Project
+              {loading ? 'Saving...' : 'Create New Project'}
             </button>
           </div>
         </form>
