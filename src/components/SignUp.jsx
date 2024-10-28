@@ -21,7 +21,7 @@ function SignUp() {
     if (formData.password === formData.confirmPassword) {
       try {
         // Post formData to Flask API
-        await axios.post('http://127.0.0.1:5000/users', {
+        await axios.post('https://project-management-server-2.onrender.com/users', {
           name: formData.name,
           username: formData.username,
           email: formData.email,
