@@ -29,7 +29,6 @@ const LandingPage = () => {
     <div className='bg-cover' style={{backgroundImage: "url('https://plus.unsplash.com/premium_photo-1706259481452-f857c96ceaca?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8cHJvamVjdCUyMG1hbmFnZW1lbnR8ZW58MHx8MHx8fDA%3D')"}}>
       <header className="bg-white shadow-md py-6 text-center mt-20">
         <h1 className="text-4xl font-bold text-gray-900">Welcome to Our Service</h1>
-        <p className="text-xl text-gray-600">Sign up today!</p>
       </header>
 
       <section className="py-12 px-4 mt-20">
