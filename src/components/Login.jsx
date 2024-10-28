@@ -14,7 +14,7 @@ function Login() {
     e.preventDefault();
     
     try {
-      const response = await fetch('http://127.0.0.1:5000/users');
+      const response = await fetch('https://project-management-server-2.onrender.com/users');
       const users = await response.json();
       const user = users.find(u => u.username === credentials.username && u.password === credentials.password);
 
